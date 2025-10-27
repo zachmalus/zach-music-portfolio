@@ -439,22 +439,22 @@
                 font-size: 2.5rem;
                 letter-spacing: 4px;
             }
-            
+
             .nav {
                 flex-direction: column;
                 gap: 20px;
             }
-            
+
             .social-links {
                 flex-direction: column;
                 gap: 20px;
             }
-            
+
             .experience-grid {
                 grid-template-columns: 1fr;
             }
         }
-    
+
         /* === Hero banner image (wide crop) === */
         .hero-banner {
             width: 100%;
@@ -590,6 +590,20 @@
             </div>
         </section>
 
+        <!-- Videos Section -->
+        <section id="videos" class="section">
+            <div class="container">
+                <h2 class="section-title">Performance Video</h2>
+                <div style="display: flex; justify-content: center;">
+                    <div class="video-placeholder" onclick="handleVideoClick(1)" style="max-width: 600px; width: 100%;">
+                        <div class="video-icon">▶</div>
+                        <div class="video-text">Latest Performance</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <!-- TikTok Section -->
         <section id="tiktok" class="section">
             <div class="container">
@@ -617,18 +631,6 @@
             </div>
         </section>
 
-        <!-- Videos Section -->
-        <section id="videos" class="section">
-            <div class="container">
-                <h2 class="section-title">Performance Video</h2>
-                <div style="display: flex; justify-content: center;">
-                    <div class="video-placeholder" onclick="handleVideoClick(1)" style="max-width: 600px; width: 100%;">
-                        <div class="video-icon">▶</div>
-                        <div class="video-text">Latest Performance</div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Connect Section -->
         <section id="connect" class="section social-section">
@@ -682,7 +684,7 @@
         function handleVideoClick(videoNumber) {
             const placeholder = event.target.closest('.video-placeholder');
             const originalContent = placeholder.innerHTML;
-            
+
             placeholder.innerHTML = `
                 <div style="color: #ffffff; text-align: center;">
                     <div style="font-size: 1.2rem; margin-bottom: 10px;">📹</div>
@@ -690,7 +692,7 @@
                     <div style="font-size: 0.8rem; color: #888; margin-top: 10px;">Click to reset</div>
                 </div>
             `;
-            
+
             placeholder.onclick = function() {
                 placeholder.innerHTML = originalContent;
                 placeholder.onclick = function() { handleVideoClick(videoNumber); };
@@ -705,7 +707,7 @@
                 'video2': 'https://www.tiktok.com/@zachmalus/video/7516627807833820459',
                 'video3': 'https://www.tiktok.com/@zachmalus/video/7538468720386034958'
             };
-            
+
             if (tiktokUrls[videoId]) {
                 window.open(tiktokUrls[videoId], '_blank', 'noopener,noreferrer');
             }
@@ -715,7 +717,7 @@
         function handleBannerClick() {
             const banner = document.querySelector('.banner');
             const originalContent = banner.innerHTML;
-            
+
             banner.innerHTML = `
                 <div style="color: rgba(255, 179, 186, 0.8); text-align: center;">
                     <div style="font-size: 2rem; margin-bottom: 15px;">🎸</div>
@@ -723,7 +725,7 @@
                     <div style="font-size: 0.8rem; color: rgba(255, 223, 186, 0.6); margin-top: 10px;">Click to reset placeholder</div>
                 </div>
             `;
-            
+
             banner.onclick = function() {
                 banner.innerHTML = originalContent;
                 banner.onclick = handleBannerClick;
@@ -734,23 +736,23 @@
 
         // Proximity glow effect
         const glowElements = document.querySelectorAll('.name, .section-title, .band-name, .nav-item, .social-link');
-        
+
         document.addEventListener('mousemove', function(e) {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
-            
+
             glowElements.forEach(element => {
                 const rect = element.getBoundingClientRect();
                 const elementX = rect.left + rect.width / 2;
                 const elementY = rect.top + rect.height / 2;
-                
+
                 const distance = Math.sqrt(
                     Math.pow(mouseX - elementX, 2) + Math.pow(mouseY - elementY, 2)
                 );
-                
+
                 const maxDistance = 200;
                 const glowIntensity = Math.max(0, 1 - (distance / maxDistance));
-                
+
                 if (glowIntensity > 0) {
                     const glowSize = Math.floor(glowIntensity * 30);
                     const glowOpacity = glowIntensity * 0.8;
